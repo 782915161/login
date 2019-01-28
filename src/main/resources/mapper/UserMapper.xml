@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<!-- 根节点必须是mapper -->
+<!-- namespace：对应的接口文件 -->
+<mapper namespace="cn.tedu.boot.sample.mapper.UserMapper">
+
+	<!-- 根据执行的操作类型选取节点 -->
+	<!-- id：对应的抽象方法的方法名 -->
+	<!-- ;值：使用#{}框住参数User类型中的属性名 -->
+	<insert id="addnew">
+		INSERT INTO t_user (
+			username, password,
+			age, phone,
+			email
+		) VALUES (
+			#{username}, #{password},
+			#{age}, #{phone},
+			#{email}
+		)
+	</insert>
+	
+	<select id="findAll" resultType="cn.tedu.boot.entity.User">
+		select username,password,age,phone,email from t_user;
+	</select>
+	
+	<select id="findByUsername" resultType="cn.tedu.boot.entity.User">
+		select password
+		from t_user
+		where username=#{username};
+	</select>
+</mapper>
+
+
+
+
+
+
+
